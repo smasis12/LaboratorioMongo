@@ -153,6 +153,52 @@ public class Conexion {
      
         
     }
+    
+    public void FuncionProductora2(){
+        String NombreProductora="Dreamworks";
+        Coleccion=db.getCollection("Pelicula");
+        
+        BasicDBObject filtro = new BasicDBObject("Productora", new BasicDBObject("$regex",NombreProductora));
+        
+       System.out.print(Coleccion.find(filtro).count());
+       
+        
+    }
+    
+    public void PeliculaMenor(){
+        
+         //“$lt“, “$lte“, “$gt” y “$gte” son operadores de comparación que corresponden a <, <=, >, y >=, respectivamente.
+        int mayor=0;
+        int menor=500;
+        String NombreProductora="Dreamworks";
+        
+        Coleccion= db.getCollection("Pelicula");
+        BasicDBObject filtro = new BasicDBObject("Productora" , new BasicDBObject("$regex",NombreProductora));
+        BasicDBObject Columna = new BasicDBObject();
+        Columna.put("Duracion",1);
+        
+        
+         DBCursor cursor= Coleccion.find(filtro, Columna);
+       // try{
+        while(cursor.hasNext()){
+            
+             BasicDBObject object = (BasicDBObject) cursor.next();
+      String Estreno = object.get("Duracion").toString(); // If required convert the _id to String
+      
+      int in= Integer.parseInt(Estreno);
+      
+      System.out.println(object); // print _id with object 
+      System.out.println(Estreno);
+            
+            
+            //N.setText(N.getText()+"\n"+cursor.next());  
+            
+         }
+        /*System.out.println("Se consulto rango desde");
+        System.out.println(año1);
+        System.out.println("hasta");
+        System.out.println(año2);*/
+    }
       
       
     
