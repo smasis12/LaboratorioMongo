@@ -37,7 +37,9 @@ public class MongoJframe extends javax.swing.JFrame {
         MenuTitulo = new javax.swing.JMenuItem();
         MenuFranquicia = new javax.swing.JMenuItem();
         MenuRango = new javax.swing.JMenuItem();
-        MenuProductora = new javax.swing.JMenuItem();
+        mnuProductora = new javax.swing.JMenu();
+        mnuBasicaProductora = new javax.swing.JMenuItem();
+        mnuProductoraCompleta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CONSULTAR PELICULAS");
@@ -48,7 +50,6 @@ public class MongoJframe extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 153));
         jLabel1.setText("Informacion de Películas");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 420, 60));
-        jLabel1.getAccessibleContext().setAccessibleName("Informacion de Películas");
 
         jScrollPane1.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -98,8 +99,25 @@ public class MongoJframe extends javax.swing.JFrame {
         });
         MenuConsultas.add(MenuRango);
 
-        MenuProductora.setText("Productora");
-        MenuConsultas.add(MenuProductora);
+        mnuProductora.setText("Productora");
+
+        mnuBasicaProductora.setText("Info Basica");
+        mnuBasicaProductora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuBasicaProductoraActionPerformed(evt);
+            }
+        });
+        mnuProductora.add(mnuBasicaProductora);
+
+        mnuProductoraCompleta.setText("Info Completa");
+        mnuProductoraCompleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuProductoraCompletaActionPerformed(evt);
+            }
+        });
+        mnuProductora.add(mnuProductoraCompleta);
+
+        MenuConsultas.add(mnuProductora);
 
         jMenuBar1.add(MenuConsultas);
 
@@ -133,6 +151,17 @@ public class MongoJframe extends javax.swing.JFrame {
     private void AreaConsultaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_AreaConsultaAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_AreaConsultaAncestorAdded
+
+    private void mnuProductoraCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProductoraCompletaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuProductoraCompletaActionPerformed
+
+    private void mnuBasicaProductoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBasicaProductoraActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        JProductora1 P1 = new JProductora1();
+        P1.setVisible(true);
+    }//GEN-LAST:event_mnuBasicaProductoraActionPerformed
     public void AgrearATextArea(String Titulo) throws Exception{
        // Conexion c= new Conexion();
        
@@ -151,6 +180,11 @@ public class MongoJframe extends javax.swing.JFrame {
         con.AgregarPorRango(AreaConsulta, R1, R2);
         
     }    
+    
+    public void AgregarPorPoductora1(String Productora) throws Exception{
+        con.ConectarBase();
+        con.FuncionProductora1(AreaConsulta, Productora);
+    }
     /**
      * @param args the command line arguments
      */
@@ -190,12 +224,14 @@ public class MongoJframe extends javax.swing.JFrame {
     private javax.swing.JTextArea AreaConsulta;
     private javax.swing.JMenu MenuConsultas;
     private javax.swing.JMenuItem MenuFranquicia;
-    private javax.swing.JMenuItem MenuProductora;
     private javax.swing.JMenuItem MenuRango;
     private javax.swing.JMenuItem MenuTitulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mnuBasicaProductora;
+    private javax.swing.JMenu mnuProductora;
+    private javax.swing.JMenuItem mnuProductoraCompleta;
     // End of variables declaration//GEN-END:variables
 }
